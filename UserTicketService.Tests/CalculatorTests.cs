@@ -21,7 +21,7 @@ public class CalculatorTests
     [TestCase(0, 5, 5)]
     public void Additional_ReturnsCorrectSum(int a, int b, int expected)
     {
-        Assert.Equals(expected, _calculator.Additional(a, b));
+        Assert.AreEqual(expected, _calculator.Additional(a, b));
     }
 
     [Test]
@@ -30,7 +30,7 @@ public class CalculatorTests
     [TestCase(0, 5, -5)]
     public void Subtraction_ReturnsCorrectDifference(int a, int b, int expected)
     {
-        Assert.Equals(expected, _calculator.Subtraction(a, b));
+        Assert.AreEqual(expected, _calculator.Subtraction(a, b));
     }
 
     [Test]
@@ -39,7 +39,7 @@ public class CalculatorTests
     [TestCase(0, 5, 0)]
     public void Multiplication_ReturnsCorrectProduct(int a, int b, int expected)
     {
-        Assert.Equals(expected, _calculator.Multiplication(a, b));
+        Assert.AreEqual(expected, _calculator.Multiplication(a, b));
     }
 
     [Test]
@@ -48,7 +48,7 @@ public class CalculatorTests
     [TestCase(0, 1, 0)]
     public void Division_ReturnsCorrectQuotient(int a, int b, int expected)
     {
-        Assert.Equals(expected, _calculator.Division(a, b));
+        Assert.AreEqual(expected, _calculator.Division(a, b));
     }
 
     [Test]

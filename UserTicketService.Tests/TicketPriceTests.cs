@@ -30,6 +30,6 @@ public class TicketPriceTests
 
       var ticketPrice = new TicketPrice(mockTicketService.Object);
 
-      Assert.Equals(expectedPrice, ticketPrice.MakeTicketPrice(ticketId));
+      Assert.AreEqual(expectedPrice, ticketPrice.MakeTicketPrice(ticketId));
   }
 }
