@@ -5,131 +5,55 @@ namespace UserTicketService.Tests;
 /// Tests for the Calculator class.
 /// </summary>
 [TestFixture]
-public class CalculatorTest
+public class CalculatorTests
 {
-    /// <summary>
-    /// Initializes a new instance of the Calculator class before each test.
-    /// </summary>
+    private Calculator _calculator;
+
     [SetUp]
     public void Setup()
     {
-        // ...
+        _calculator = new Calculator();
     }
 
-    /// <summary>
-    /// Tests that the Subtraction method returns the correct result for positive numbers.
-    /// </summary>
     [Test]
-    public void Subtraction_PositiveNumbers_ReturnsCorrectResult()
+    [TestCase(2, 3, 5)]
+    [TestCase(-1, -2, -3)]
+    [TestCase(0, 5, 5)]
+    public void Additional_ReturnsCorrectSum(int a, int b, int expected)
     {
-        // ...
+        Assert.Equals(expected, _calculator.Additional(a, b));
     }
 
-    /// <summary>
-    /// Tests that the Subtraction method returns the correct result for negative numbers.
-    /// </summary>
     [Test]
-    public void Subtraction_NegativeNumbers_ReturnsCorrectResult()
+    [TestCase(5, 3, 2)]
+    [TestCase(-1, -2, 1)]
+    [TestCase(0, 5, -5)]
+    public void Subtraction_ReturnsCorrectDifference(int a, int b, int expected)
     {
-        // ...
+        Assert.Equals(expected, _calculator.Subtraction(a, b));
     }
 
-    /// <summary>
-    /// Tests that the Subtraction method returns the correct result for a positive and a negative number.
-    /// </summary>
     [Test]
-    public void Subtraction_PositiveAndNegativeNumbers_ReturnsCorrectResult()
+    [TestCase(2, 3, 6)]
+    [TestCase(-1, -2, 2)]
+    [TestCase(0, 5, 0)]
+    public void Multiplication_ReturnsCorrectProduct(int a, int b, int expected)
     {
-        // ...
+        Assert.Equals(expected, _calculator.Multiplication(a, b));
     }
 
-    /// <summary>
-    /// Tests that the Subtraction method returns the correct result when both numbers are zero.
-    /// </summary>
     [Test]
-    public void Subtraction_Zero_ReturnsCorrectResult()
+    [TestCase(6, 3, 2)]
+    [TestCase(-10, 2, -5)]
+    [TestCase(0, 1, 0)]
+    public void Division_ReturnsCorrectQuotient(int a, int b, int expected)
     {
-        // ...
+        Assert.Equals(expected, _calculator.Division(a, b));
     }
 
-    /// <summary>
-    /// Tests that the Division method returns the correct quotient for positive numbers.
-    /// </summary>
-    [Test]
-    public void Division_PositiveNumbers_ReturnsQuotient()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Division method returns the correct quotient for negative numbers.
-    /// </summary>
-    [Test]
-    public void Division_NegativeNumbers_ReturnsQuotient()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Division method returns the correct quotient for a positive and a negative number.
-    /// </summary>
-    [Test]
-    public void Division_PositiveAndNegativeNumbers_ReturnsQuotient()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Division method throws a DivideByZeroException when dividing by zero.
-    /// </summary>
     [Test]
     public void Division_DivideByZero_ThrowsDivideByZeroException()
     {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Additional method returns the correct sum.
-    /// </summary>
-    [Test]
-    public void AddAlwaysReturnsExpectedValue()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Multiplication method returns the correct product for two positive numbers.
-    /// </summary>
-    [Test]
-    public void Multiplication_TwoPositiveNumbers_ReturnsPositiveProduct()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Multiplication method returns the correct product for a positive and a negative number.
-    /// </summary>
-    [Test]
-    public void Multiplication_PositiveAndNegativeNumber_ReturnsNegativeProduct()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Multiplication method returns the correct product for two negative numbers.
-    /// </summary>
-    [Test]
-    public void Multiplication_TwoNegativeNumbers_ReturnsPositiveProduct()
-    {
-        // ...
-    }
-
-    /// <summary>
-    /// Tests that the Multiplication method returns zero when one of the numbers is zero.
-    /// </summary>
-    [Test]
-    public void Multiplication_NumberAndZero_ReturnsZero()
-    {
-        // ...
+        Assert.Throws<DivideByZeroException>(() => _calculator.Division(5, 0));
     }
 }

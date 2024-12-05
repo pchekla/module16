@@ -19,4 +19,17 @@ public class TicketPriceTests
     var ticketPriceTest = new TicketPrice(mockTicketService.Object);
     Assert.That(ticketPriceTest.MakeTicketPrice(3) == 7800);
   }
+  [Test]
+  [TestCase(1, 100)]
+  [TestCase(2, 500)]
+  [TestCase(3, 7800)]
+  public void MakeTicketPrice_ReturnsCorrectPrice(int ticketId, int expectedPrice)
+  {
+      var mockTicketService = new Mock<ITicketService>();
+      mockTicketService.Setup(p => p.GetTicketPrice(ticketId)).Returns(expectedPrice);
+
+      var ticketPrice = new TicketPrice(mockTicketService.Object);
+
+      Assert.Equals(expectedPrice, ticketPrice.MakeTicketPrice(ticketId));
+  }
 }

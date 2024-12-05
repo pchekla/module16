@@ -4,22 +4,32 @@ using NUnit.Framework;
 namespace UserTicketService.Tests;
 
 [TestFixture]
-public class TicketServiceTests 
+public class TicketServiceTests
 {
-  // This test checks if the GetTicketPrice method returns a price greater than 0 for an existing ticket with ID 1.
-  [Test]
-  public void GetTicketPriceMustReturnExistingPrice() 
-  {
-    var ticketServiceTest = new TicketService();
-    Assert.That(ticketServiceTest.GetTicketPrice(1), Is.GreaterThan(0));
-  }
+    private TicketService _ticketService;
 
-  // This test checks if the GetTicketPrice method throws a TicketNotFoundException for a non-existing ticket with ID 100.
-  [Test]
-  public void GetTicketPriceMustThrowException() 
-  {
-    var ticketServiceTest = new TicketService();
-    Assert.Throws < TicketNotFoundException > (() => ticketServiceTest.GetTicketPrice(100));
-  }
+    [SetUp]
+    public void Setup()
+    {
+        _ticketService = new TicketService();
+    }
 
+    [Test]
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(3)]
+    public void GetTicketPrice_ReturnsPriceForValidTicket(int ticketId)
+    {
+        var price = _ticketService.GetTicketPrice(ticketId);
+        Assert.That(price, Is.GreaterThan(0));
+    }
+
+    [Test]
+    [TestCase(100)]
+    [TestCase(-1)]
+    [TestCase(0)]
+    public void GetTicketPrice_ThrowsExceptionForInvalidTicket(int ticketId)
+    {
+        Assert.Throws<TicketNotFoundException>(() => _ticketService.GetTicketPrice(ticketId));
+    }
 }

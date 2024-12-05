@@ -44,6 +44,8 @@ public class Calculator
     /// <exception cref="DivideByZeroException">Thrown when the second integer is zero.</exception>
     public int Division(int a, int b) 
     {
+        if (b == 0)
+            throw new DivideByZeroException("Cannot divide by zero.");
         return a / b;
     }
 }
